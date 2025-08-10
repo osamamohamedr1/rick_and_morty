@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/core/utils/colors_manager.dart';
+import 'package:rick_and_morty/core/utils/text_styles.dart';
 
 class CustomDropDownButton extends StatelessWidget {
   final String hint;
   final List<String> items;
   final void Function(String?) onChanged;
+  final String? value;
 
   const CustomDropDownButton({
     super.key,
     required this.hint,
     required this.items,
     required this.onChanged,
+    this.value,
   });
 
   @override
@@ -18,21 +22,21 @@ class CustomDropDownButton extends StatelessWidget {
       height: 50,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-        color: Colors.white30,
+        color: ColorsManager.green,
         borderRadius: BorderRadius.circular(16),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
           padding: EdgeInsets.symmetric(horizontal: 8),
+          value: items.contains(value) ? value : null,
           hint: Text(
             hint,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: Colors.white),
+            maxLines: 2,
+            style: Textstyles.font14GreyNormal.copyWith(fontSize: 15),
           ),
           icon: const Icon(
             Icons.arrow_drop_down,
-            color: Colors.white,
+            color: ColorsManager.grey,
             size: 26,
           ),
           items: items

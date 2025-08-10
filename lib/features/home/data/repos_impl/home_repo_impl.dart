@@ -1,7 +1,7 @@
-import 'dart:io';
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:hive/hive.dart';
 import 'package:rick_and_morty/core/utils/errors.dart';
 import 'package:rick_and_morty/features/home/data/data_sources/home_local_data_source.dart';
 import 'package:rick_and_morty/features/home/data/data_sources/home_remote_data_source.dart';
@@ -22,20 +22,23 @@ class HomeRepoImpl implements HomeRepo {
   }) async {
     List<CharacterModel> books;
     try {
-      books = homeLocalDataSource.fetchCharacters(pageNumber: pageNumber);
-      if (books.isNotEmpty) {
-        return right(books);
-      }
+      // books = homeLocalDataSource.fetchCharacters(pageNumber: pageNumber);
+      // if (books.isNotEmpty) {
+      //   return right(books);
+      // }
       books = await homeRemoteDataSource.fetchListOfCharacters(
         pageNumber: pageNumber,
       );
       return right(books);
     } catch (e) {
+      log(e.toString());
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
-      } else if (e is HiveError || e is TypeError || e is FileSystemException) {
-        return left(HiveFailure.fromHiveError(e));
-      } else {
+      }
+      //  else if (e is HiveError || e is TypeError || e is FileSystemException) {
+      //   return left(HiveFailure.fromHiveError(e));
+      // }
+      else {
         return left(ServerFailure(errorMessage: 'Ops there was an error'));
       }
     }

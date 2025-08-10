@@ -1,20 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/core/utils/colors_manager.dart';
+import 'package:rick_and_morty/core/utils/const.dart';
 import 'package:rick_and_morty/core/utils/text_styles.dart';
+import 'package:rick_and_morty/features/home/data/models/character_model/character_model.dart';
 import 'package:rick_and_morty/features/home/presentation/views/widgets/custom_faorite_icon.dart';
 
 class CharacterCard extends StatelessWidget {
-  final String name;
-  final String status;
-  final String imageUrl;
+  final CharacterModel characterModel;
 
-  const CharacterCard({
-    super.key,
-    required this.name,
-    required this.status,
-    required this.imageUrl,
-  });
+  const CharacterCard({super.key, required this.characterModel});
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +29,7 @@ class CharacterCard extends StatelessWidget {
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
                 child: CachedNetworkImage(
                   fit: BoxFit.fill,
-                  imageUrl: imageUrl,
-
+                  imageUrl: characterModel.image ?? erroIMageUrl,
                   placeholder: (context, url) =>
                       Center(child: CircularProgressIndicator()),
                   errorWidget: (context, url, error) =>
@@ -44,16 +38,22 @@ class CharacterCard extends StatelessWidget {
               ),
 
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 4),
                     Text("Name:", style: Textstyles.font20GreyBold),
-                    Text(name, style: Textstyles.font20GreyNormal),
+                    Text(
+                      characterModel.name ?? 'Unkown',
+                      style: Textstyles.font20GreyNormal,
+                    ),
                     SizedBox(height: 4),
                     Text("Status:", style: Textstyles.font20GreyBold),
-                    Text(status, style: Textstyles.font20GreyNormal),
+                    Text(
+                      characterModel.status ?? 'Unkown',
+                      style: Textstyles.font20GreyNormal,
+                    ),
                   ],
                 ),
               ),

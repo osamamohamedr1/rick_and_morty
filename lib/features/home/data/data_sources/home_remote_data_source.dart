@@ -11,9 +11,9 @@ class HomeRemoteDataSource {
   Future<List<CharacterModel>> fetchListOfCharacters({
     int pageNumber = 1,
   }) async {
-    var result = await apiService.get(endPoint: 'character/?page=$pageNumber ');
+    var result = await apiService.get(endPoint: 'character/?page=1');
     List<CharacterModel> books = getCharactersList(result);
-    saveCharactersLocal(books, kCharacterBox);
+    // saveCharactersLocal(books, kCharacterBox);
     return books;
   }
 

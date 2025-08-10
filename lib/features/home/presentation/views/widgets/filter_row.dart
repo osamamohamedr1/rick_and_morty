@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/features/home/presentation/views/widgets/drop_down_button.dart';
 
-class FilterRow extends StatelessWidget {
+class FilterRow extends StatefulWidget {
   const FilterRow({
     super.key,
     required this.onStatusChanged,
@@ -9,6 +9,14 @@ class FilterRow extends StatelessWidget {
   });
   final void Function(String?) onStatusChanged;
   final void Function(String?) onSpeciesChanged;
+
+  @override
+  State<FilterRow> createState() => _FilterRowState();
+}
+
+class _FilterRowState extends State<FilterRow> {
+  String? selectedStatus;
+  String? selectedSpecies;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -18,7 +26,7 @@ class FilterRow extends StatelessWidget {
           child: CustomDropDownButton(
             hint: 'Select Status',
             items: statusOptions,
-            onChanged: onStatusChanged,
+            onChanged: widget.onStatusChanged,
           ),
         ),
         const SizedBox(width: 8),
@@ -26,7 +34,13 @@ class FilterRow extends StatelessWidget {
           child: CustomDropDownButton(
             hint: 'Select Species',
             items: speciesOptions,
-            onChanged: onSpeciesChanged,
+            value: selectedSpecies,
+            onChanged: (value) {
+              setState(() {
+                selectedSpecies = value;
+              });
+              widget.onSpeciesChanged(value);
+            },
           ),
         ),
       ],

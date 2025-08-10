@@ -34,7 +34,7 @@ class CharacterModel extends HiveObject {
   String? image;
 
   @HiveField(9)
-  List<String>? episode;
+  List<dynamic>? episode;
 
   @HiveField(10)
   String? url;
@@ -72,7 +72,7 @@ class CharacterModel extends HiveObject {
           ? null
           : Location.fromJson(json['location'] as Map<String, dynamic>),
       image: json['image'] as String?,
-      episode: json['episode'] as List<String>?,
+      episode: json['episode'] as List<dynamic>?,
       url: json['url'] as String?,
       created: json['created'] == null
           ? null

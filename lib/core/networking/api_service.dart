@@ -4,13 +4,7 @@ class ApiService {
   final Dio dio;
 
   ApiService(this.dio) {
-    dio.options = BaseOptions(
-      baseUrl: 'https://rickandmortyapi.com/api/',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-    );
+    dio.options = BaseOptions(baseUrl: 'https://rickandmortyapi.com/api/');
   }
 
   Future<dynamic> get({

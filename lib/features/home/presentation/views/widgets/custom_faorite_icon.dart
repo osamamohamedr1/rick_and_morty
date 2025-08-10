@@ -7,8 +7,9 @@ class CusomFavoriteIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
+      radius: 20,
       backgroundColor: ColorsManager.darkGreeen,
-      child: Icon(Icons.star, color: Colors.white, size: 35),
+      child: Icon(Icons.star, color: Colors.white, size: 40),
     );
   }
 }

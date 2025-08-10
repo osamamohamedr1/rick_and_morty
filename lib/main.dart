@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:rick_and_morty/core/utils/my_bloc_observer.dart';
 import 'package:rick_and_morty/core/utils/service_locator.dart';
@@ -11,6 +12,7 @@ import 'package:rick_and_morty/features/home/data/models/character_model/origin.
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await ScreenUtil.ensureScreenSize();
   await Hive.initFlutter();
   Hive.registerAdapter(CharacterModelAdapter());
   Hive.registerAdapter(LocationAdapter());
@@ -25,10 +27,15 @@ class RickAndMorty extends StatelessWidget {
   final AppRouter appRouter;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: Routes.splash,
-      onGenerateRoute: appRouter.generateRoute,
-      debugShowCheckedModeBanner: false,
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child: MaterialApp(
+        initialRoute: Routes.splash,
+        onGenerateRoute: appRouter.generateRoute,
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }
