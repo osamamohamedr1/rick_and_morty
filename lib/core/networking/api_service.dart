@@ -5,7 +5,7 @@ class ApiService {
 
   ApiService(this.dio) {
     dio.options = BaseOptions(
-      baseUrl: 'https://rickandmortyapi.com/api/character',
+      baseUrl: 'https://rickandmortyapi.com/api/',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
