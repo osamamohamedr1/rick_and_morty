@@ -6,13 +6,17 @@ class Assets {
   /// assets/images/android_12.png
   static const String imagesAndroid12 = "assets/images/android_12.png";
 
-  /// Assets for imagesBackground
-  /// assets/images/background.png
-  static const String imagesBackground = "assets/images/background.png";
+  /// Assets for imagesScreensBackground
+  /// assets/images/screens_background.png
+  static const String imagesScreensBackground = "assets/images/screens_background.png";
 
   /// Assets for imagesSplash
   /// assets/images/splash.png
   static const String imagesSplash = "assets/images/splash.png";
+
+  /// Assets for imagesSplashBackground
+  /// assets/images/splash_background.png
+  static const String imagesSplashBackground = "assets/images/splash_background.png";
 
   /// Assets for svgsError
   /// assets/svgs/error.svg

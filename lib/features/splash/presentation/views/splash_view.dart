@@ -24,8 +24,11 @@ class _SplashViewState extends State<SplashView> {
     });
 
     if (mounted) {
-      Future.delayed(Duration(seconds: 20), () {
-        context.pushNamed(Routes.home);
+      Future.delayed(Duration(seconds: 2), () {
+        context.pushNamedAndRemoveUntil(
+          Routes.home,
+          predicate: (route) => false,
+        );
       });
     }
   }
@@ -38,13 +41,13 @@ class _SplashViewState extends State<SplashView> {
       body: Stack(
         children: [
           Image.asset(
-            Assets.imagesBackground,
+            Assets.imagesSplashBackground,
             width: width,
             height: height,
             fit: BoxFit.cover,
           ),
           AnimatedPositioned(
-            duration: Duration(seconds: 2),
+            duration: Duration(seconds: 1),
             curve: Curves.easeOut,
             bottom: _animate ? height * .4 : 0,
             left: width / 2 - 135,

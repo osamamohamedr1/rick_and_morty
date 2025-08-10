@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/core/routes/routes.dart';
+import 'package:rick_and_morty/features/home/presentation/views/home_view.dart';
 import 'package:rick_and_morty/features/splash/presentation/views/splash_view.dart';
 
 class AppRouter {
@@ -7,7 +8,8 @@ class AppRouter {
     switch (settings.name) {
       case Routes.splash:
         return MaterialPageRoute(builder: (_) => Scaffold(body: SplashView()));
-
+      case Routes.home:
+        return MaterialPageRoute(builder: (_) => Scaffold(body: HomeView()));
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
