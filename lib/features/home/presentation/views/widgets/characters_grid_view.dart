@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/core/routes/routes.dart';
+import 'package:rick_and_morty/core/utils/spacing.dart';
 import 'package:rick_and_morty/core/utils/text_styles.dart';
 import 'package:rick_and_morty/features/home/data/models/character_model/character_model.dart';
 import 'package:rick_and_morty/features/home/presentation/manager/cubit/home_cubit.dart';
@@ -61,8 +62,18 @@ class _CharactersGridViewState extends State<CharactersGridView> {
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {
         if (state is GetCharactersSuccess) {
-          // Use the characters from cubit state directly instead of maintaining local list
           characters = state.characters;
+
+          // // Show cache indicator if data is from cache
+          // if (state.isFromCache) {
+          //   ScaffoldMessenger.of(context).showSnackBar(
+          //     const SnackBar(
+          //       content: Text("Showing cached data - No internet connection"),
+          //       backgroundColor: Colors.orange,
+          //       duration: Duration(seconds: 3),
+          //     ),
+          //   );
+          // }
         }
         if (state is GetCharactersFailure) {
           ScaffoldMessenger.of(
@@ -71,18 +82,23 @@ class _CharactersGridViewState extends State<CharactersGridView> {
         }
       },
       builder: (context, state) {
-        // For initial loading, show shimmer
         if (state is GetCharactersLoading) {
           return CharactersShimmer();
         }
-
-        // For errors with no characters, show error message
         if (characters.isEmpty && state is GetCharactersFailure) {
           return SliverFillRemaining(
             child: Center(
-              child: Text(
-                "Error: ${state.message}",
-                style: Textstyles.font16WhiteBold,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.wifi_off, size: 90, color: Colors.white),
+                  verticalSpace(16),
+                  Text(
+                    state.message,
+                    style: Textstyles.font16WhiteBold,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
             ),
           );

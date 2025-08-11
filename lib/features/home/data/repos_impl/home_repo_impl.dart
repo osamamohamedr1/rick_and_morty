@@ -1,5 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:rick_and_morty/core/functions/save_charchters_local.dart';
+import 'package:rick_and_morty/core/utils/const.dart';
 import 'package:rick_and_morty/core/utils/errors.dart';
 import 'package:rick_and_morty/features/home/data/data_sources/home_local_data_source.dart';
 import 'package:rick_and_morty/features/home/data/data_sources/home_remote_data_source.dart';
@@ -33,9 +36,12 @@ class HomeRepoImpl implements HomeRepo {
         type: type,
         gender: gender,
       );
+      if (pageNumber == 1) {
+        await Hive.box<CharacterModel>(kCharacterBox).clear();
+        saveCharactersLocal(books, kCharacterBox);
+      }
       return right(books);
     } catch (e) {
-      print(e.toString());
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {

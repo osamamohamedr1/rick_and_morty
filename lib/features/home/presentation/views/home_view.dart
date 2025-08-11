@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty/core/utils/assets.dart';
+import 'package:rick_and_morty/core/utils/colors_manager.dart';
 import 'package:rick_and_morty/core/utils/spacing.dart';
 import 'package:rick_and_morty/core/widgets/cusotm_text_field.dart';
 import 'package:rick_and_morty/features/home/presentation/manager/cubit/home_cubit.dart';
@@ -32,7 +33,6 @@ class _HomeViewState extends State<HomeView> {
     _scrollController = ScrollController();
     _searchFocusNode = FocusNode();
 
-    // Add scroll listener to unfocus when scrolling
     _scrollController.addListener(() {
       if (_searchFocusNode.hasFocus) {
         _searchFocusNode.unfocus();
@@ -72,7 +72,6 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       body: GestureDetector(
         onTap: () {
-          // Unfocus when tapping outside the text field
           FocusScope.of(context).unfocus();
         },
         child: Stack(children: [_buildBackground(), _buildContent()]),
@@ -94,28 +93,45 @@ class _HomeViewState extends State<HomeView> {
   Widget _buildContent() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: CustomScrollView(
-        controller: _scrollController,
-        slivers: [
-          SliverToBoxAdapter(child: verticalSpace(25)),
-          SliverToBoxAdapter(child: SvgPicture.asset(Assets.svgsHeader)),
-          const SliverToBoxAdapter(child: ExploreFavoriteButton()),
-          SliverToBoxAdapter(child: verticalSpace(10)),
-          SliverToBoxAdapter(
-            child: CustomSearchField(
-              onChanged: _onSearchChanged,
-              focusNode: _searchFocusNode,
+      child: BlocBuilder<HomeCubit, HomeState>(
+        builder: (context, state) {
+          return RefreshIndicator(
+            backgroundColor: ColorsManager.green,
+            color: ColorsManager.darkGreeen,
+            onRefresh: () {
+              return context.read<HomeCubit>().getCharactersList(pageNumber: 1);
+            },
+            child: CustomScrollView(
+              controller: _scrollController,
+              slivers: [
+                sliverVerticalSpace(10),
+                SliverToBoxAdapter(child: SvgPicture.asset(Assets.svgsHeader)),
+                const SliverToBoxAdapter(child: ExploreFavoriteButton()),
+                sliverVerticalSpace(10),
+
+                SliverToBoxAdapter(
+                  child: CustomSearchField(
+                    onChanged: _onSearchChanged,
+                    focusNode: _searchFocusNode,
+                  ),
+                ),
+                sliverVerticalSpace(10),
+                SliverToBoxAdapter(child: FilterRow(searchName: _searchName)),
+                sliverVerticalSpace(20),
+                SliverPadding(
+                  padding: _bottomPadding,
+                  sliver: CharactersGridView(
+                    scrollController: _scrollController,
+                  ),
+                ),
+              ],
             ),
-          ),
-          SliverToBoxAdapter(child: verticalSpace(10)),
-          SliverToBoxAdapter(child: FilterRow(searchName: _searchName)),
-          SliverToBoxAdapter(child: verticalSpace(20)),
-          SliverPadding(
-            padding: _bottomPadding,
-            sliver: CharactersGridView(scrollController: _scrollController),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
+
+  SliverToBoxAdapter sliverVerticalSpace(double height) =>
+      SliverToBoxAdapter(child: verticalSpace(height));
 }

@@ -6,6 +6,10 @@ class Assets {
   /// assets/images/android_12.png
   static const String imagesAndroid12 = "assets/images/android_12.png";
 
+  /// Assets for imagesAppIcon
+  /// assets/images/app_icon.png
+  static const String imagesAppIcon = "assets/images/app_icon.png";
+
   /// Assets for imagesFavorites
   /// assets/images/favorites.png
   static const String imagesFavorites = "assets/images/favorites.png";
