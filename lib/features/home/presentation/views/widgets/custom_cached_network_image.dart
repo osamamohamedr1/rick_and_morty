@@ -12,13 +12,14 @@ class CustomCachedNetworkImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       fit: BoxFit.fill,
-      imageUrl: characterModel.image ?? erroImageUrl,
+      imageUrl: characterModel.image ?? errorImageUrl,
       placeholder: (context, url) => Center(
         child: SizedBox(
-          height: 90,
-          width: 90,
-          child: Padding(
-            padding: const EdgeInsets.all(20),
+          height: 260,
+          width: 150,
+          child: SizedBox(
+            height: 20,
+            width: 20,
             child: CircularProgressIndicator(),
           ),
         ),

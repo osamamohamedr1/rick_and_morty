@@ -3,7 +3,9 @@ import 'package:rick_and_morty/core/utils/colors_manager.dart';
 import 'package:rick_and_morty/core/utils/text_styles.dart';
 import 'package:rick_and_morty/features/home/data/models/character_model/character_model.dart';
 import 'package:rick_and_morty/features/home/presentation/views/widgets/custom_cached_network_image.dart';
-import 'package:rick_and_morty/features/home/presentation/views/widgets/custom_faorite_icon.dart';
+import 'package:rick_and_morty/core/widgets/custom_faorite_icon.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rick_and_morty/features/favorites/presentation/manager/cubit/favorites_cubit.dart';
 
 class CharacterCard extends StatelessWidget {
   final CharacterModel characterModel;
@@ -61,7 +63,39 @@ class CharacterCard extends StatelessWidget {
                 ),
               ],
             ),
-            Positioned(top: 8, left: 4, child: CusomFavoriteIcon()),
+            Positioned(
+              bottom: 20,
+              right: 16,
+              child: BlocBuilder<FavoritesCubit, FavoritesState>(
+                builder: (context, state) {
+                  bool isFavorite = false;
+                  if (state is FavoritesListLoaded) {
+                    isFavorite = state.favorites.any(
+                      (fav) => fav.id == characterModel.id,
+                    );
+                  } else if (state is FavoritesChanged) {
+                    isFavorite = state.characterId == characterModel.id
+                        ? state.isFavorite
+                        : false;
+                  }
+                  return SizedBox(
+                    child: CustomFavoriteIcon(
+                      radius: 60,
+                      characterId: characterModel.id ?? 0,
+                      isFavorite: isFavorite,
+                      onPressed: () {
+                        final cubit = context.read<FavoritesCubit>();
+                        if (isFavorite) {
+                          cubit.removeFavorite(characterModel.id ?? 0);
+                        } else {
+                          cubit.addFavorite(characterModel);
+                        }
+                      },
+                    ),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),

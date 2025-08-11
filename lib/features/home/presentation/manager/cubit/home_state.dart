@@ -8,9 +8,9 @@ final class HomeInitial extends HomeState {}
 final class GetCharactersLoading extends HomeState {}
 
 final class GetCharactersSuccess extends HomeState {
-  final List<CharacterModel> books;
+  final List<CharacterModel> characters;
 
-  GetCharactersSuccess(this.books);
+  GetCharactersSuccess(this.characters);
 }
 
 final class GetCharactersPaginationLoading extends HomeState {}

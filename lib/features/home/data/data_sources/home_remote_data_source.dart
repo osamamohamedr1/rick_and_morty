@@ -1,6 +1,4 @@
-import 'package:rick_and_morty/core/functions/save_charchters_local.dart';
 import 'package:rick_and_morty/core/networking/api_service.dart';
-import 'package:rick_and_morty/core/utils/const.dart';
 import 'package:rick_and_morty/features/home/data/models/character_model/character_model.dart';
 
 class HomeRemoteDataSource {
@@ -11,7 +9,7 @@ class HomeRemoteDataSource {
   Future<List<CharacterModel>> fetchListOfCharacters({
     int pageNumber = 1,
   }) async {
-    var result = await apiService.get(endPoint: 'character/?page=1');
+    var result = await apiService.get(endPoint: 'character/?page=$pageNumber');
     List<CharacterModel> books = getCharactersList(result);
     // saveCharactersLocal(books, kCharacterBox);
     return books;

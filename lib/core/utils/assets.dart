@@ -34,6 +34,10 @@ class Assets {
   /// assets/svgs/header.svg
   static const String svgsHeader = "assets/svgs/header.svg";
 
+  /// Assets for svgsNoFavorite
+  /// assets/svgs/no_favorite.svg
+  static const String svgsNoFavorite = "assets/svgs/no_favorite.svg";
+
   /// Assets for svgsRickMortyName
   /// assets/svgs/rick_morty_name.svg
   static const String svgsRickMortyName = "assets/svgs/rick_morty_name.svg";

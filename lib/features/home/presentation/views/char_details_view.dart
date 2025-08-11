@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:rick_and_morty/core/utils/assets.dart';
 import 'package:rick_and_morty/core/utils/colors_manager.dart';
 import 'package:rick_and_morty/core/utils/spacing.dart';
@@ -16,7 +17,8 @@ class CharacterDetailsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
-        title: Image.asset(Assets.imagesFavorites),
+        scrolledUnderElevation: 0,
+        title: SvgPicture.asset(Assets.svgsRickMortyName),
         backgroundColor: ColorsManager.darkGreeen,
         iconTheme: IconThemeData(color: ColorsManager.green, size: 30),
       ),

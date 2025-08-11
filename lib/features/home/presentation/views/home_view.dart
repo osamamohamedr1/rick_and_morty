@@ -1,23 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:rick_and_morty/core/routes/routes.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty/core/utils/assets.dart';
 import 'package:rick_and_morty/core/utils/spacing.dart';
 import 'package:rick_and_morty/core/widgets/cusotm_text_field.dart';
-import 'package:rick_and_morty/features/home/presentation/manager/cubit/home_cubit.dart';
-import 'package:rick_and_morty/features/home/presentation/views/widgets/character_item.dart';
+import 'package:rick_and_morty/features/home/presentation/views/widgets/characters_grid_view.dart';
 import 'package:rick_and_morty/features/home/presentation/views/widgets/explore_favorite_button.dart';
 import 'package:rick_and_morty/features/home/presentation/views/widgets/filter_row.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  late final ScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
+          // Background
           Positioned.fill(
             child: Image.asset(
               Assets.imagesScreensBackground,
@@ -30,6 +47,7 @@ class HomeView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: CustomScrollView(
+              controller: _scrollController,
               slivers: [
                 SliverToBoxAdapter(child: verticalSpace(25)),
                 SliverToBoxAdapter(child: SvgPicture.asset(Assets.svgsHeader)),
@@ -47,44 +65,8 @@ class HomeView extends StatelessWidget {
                 ),
                 SliverToBoxAdapter(child: verticalSpace(20)),
 
-                BlocBuilder<HomeCubit, HomeState>(
-                  builder: (context, state) {
-                    if (state is GetCharactersSuccess) {
-                      return SliverGrid(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 12,
-                              crossAxisSpacing: 10,
-                              childAspectRatio: .7,
-                            ),
-                        delegate: SliverChildBuilderDelegate((context, index) {
-                          return FittedBox(
-                            fit: BoxFit.fill,
-                            child: CharacterCard(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  Routes.characterDetails,
-                                  arguments: state.books[index],
-                                );
-                              },
-                              characterModel: state.books[index],
-                            ),
-                          );
-                        }, childCount: state.books.length),
-                      );
-                    } else if (state is GetCharactersFailure) {
-                      return SliverToBoxAdapter(
-                        child: Center(child: Text('Error: ${state.message}')),
-                      );
-                    } else {
-                      return const SliverToBoxAdapter(
-                        child: Center(child: CircularProgressIndicator()),
-                      );
-                    }
-                  },
-                ),
+                // Characters grid handles all Bloc + pagination logic
+                CharactersGridView(scrollController: _scrollController),
               ],
             ),
           ),
