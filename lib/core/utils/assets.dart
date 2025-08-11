@@ -1,0 +1,57 @@
+// ignore_for_file: prefer_single_quotes
+class Assets {
+  Assets._();
+  
+  /// Assets for imagesAndroid12
+  /// assets/images/android_12.png
+  static const String imagesAndroid12 = "assets/images/android_12.png";
+
+  /// Assets for imagesAppIcon
+  /// assets/images/app_icon.png
+  static const String imagesAppIcon = "assets/images/app_icon.png";
+
+  /// Assets for imagesFavorites
+  /// assets/images/favorites.png
+  static const String imagesFavorites = "assets/images/favorites.png";
+
+  /// Assets for imagesLoader
+  /// assets/images/Loader.gif
+  static const String imagesLoader = "assets/images/Loader.gif";
+
+  /// Assets for imagesScreensBackground
+  /// assets/images/screens_background.png
+  static const String imagesScreensBackground = "assets/images/screens_background.png";
+
+  /// Assets for imagesSplash
+  /// assets/images/splash.png
+  static const String imagesSplash = "assets/images/splash.png";
+
+  /// Assets for imagesSplashBackground
+  /// assets/images/splash_background.png
+  static const String imagesSplashBackground = "assets/images/splash_background.png";
+
+  /// Assets for svgsError
+  /// assets/svgs/error.svg
+  static const String svgsError = "assets/svgs/error.svg";
+
+  /// Assets for svgsFavorites
+  /// assets/svgs/favorites.svg
+  static const String svgsFavorites = "assets/svgs/favorites.svg";
+
+  /// Assets for svgsHeader
+  /// assets/svgs/header.svg
+  static const String svgsHeader = "assets/svgs/header.svg";
+
+  /// Assets for svgsNoFavorite
+  /// assets/svgs/no_favorite.svg
+  static const String svgsNoFavorite = "assets/svgs/no_favorite.svg";
+
+  /// Assets for svgsRickMortyName
+  /// assets/svgs/rick_morty_name.svg
+  static const String svgsRickMortyName = "assets/svgs/rick_morty_name.svg";
+
+  /// Assets for svgsShip
+  /// assets/svgs/ship.svg
+  static const String svgsShip = "assets/svgs/ship.svg";
+}
+
