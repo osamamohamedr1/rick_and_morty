@@ -16,27 +16,29 @@ class HomeRepoImpl implements HomeRepo {
   });
   @override
   Future<Either<Failure, List<CharacterModel>>> featchCharacters({
-    int pageNumber = 0,
+    int pageNumber = 1,
+    String? name,
+    String? status,
+    String? species,
+    String? type,
+    String? gender,
   }) async {
     List<CharacterModel> books;
     try {
-      // books = homeLocalDataSource.fetchCharacters(pageNumber: pageNumber);
-      // if (books.isNotEmpty) {
-      //   return right(books);
-      // }
       books = await homeRemoteDataSource.fetchListOfCharacters(
         pageNumber: pageNumber,
+        name: name,
+        status: status,
+        species: species,
+        type: type,
+        gender: gender,
       );
       return right(books);
     } catch (e) {
       print(e.toString());
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
-      }
-      //  else if (e is HiveError || e is TypeError || e is FileSystemException) {
-      //   return left(HiveFailure.fromHiveError(e));
-      // }
-      else {
+      } else {
         return left(ServerFailure(errorMessage: 'Ops there was an error'));
       }
     }

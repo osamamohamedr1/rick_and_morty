@@ -10,7 +10,19 @@ class HomeGetCharactersUseCase {
 
   Future<Either<Failure, List<CharacterModel>>> call({
     int pageNumber = 1,
+    String? name,
+    String? status,
+    String? species,
+    String? type,
+    String? gender,
   }) async {
-    return homeRepo.featchCharacters(pageNumber: pageNumber);
+    return homeRepo.featchCharacters(
+      pageNumber: pageNumber,
+      name: name,
+      status: status,
+      species: species,
+      type: type,
+      gender: gender,
+    );
   }
 }

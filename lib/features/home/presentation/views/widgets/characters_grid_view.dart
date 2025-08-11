@@ -61,7 +61,8 @@ class _CharactersGridViewState extends State<CharactersGridView> {
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {
         if (state is GetCharactersSuccess) {
-          characters.addAll(state.characters);
+          // Use the characters from cubit state directly instead of maintaining local list
+          characters = state.characters;
         }
         if (state is GetCharactersFailure) {
           ScaffoldMessenger.of(
@@ -70,10 +71,12 @@ class _CharactersGridViewState extends State<CharactersGridView> {
         }
       },
       builder: (context, state) {
-        if (characters.isEmpty && state is GetCharactersLoading) {
+        // For initial loading, show shimmer
+        if (state is GetCharactersLoading) {
           return CharactersShimmer();
         }
 
+        // For errors with no characters, show error message
         if (characters.isEmpty && state is GetCharactersFailure) {
           return SliverFillRemaining(
             child: Center(

@@ -29,9 +29,11 @@ class CustomDropDownButton extends StatelessWidget {
         child: DropdownButton<String>(
           padding: EdgeInsets.symmetric(horizontal: 8),
           value: items.contains(value) ? value : null,
+          isExpanded: true,
           hint: Text(
             hint,
-            maxLines: 2,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: Textstyles.font14GreyNormal.copyWith(fontSize: 15),
           ),
           icon: const Icon(
@@ -40,7 +42,17 @@ class CustomDropDownButton extends StatelessWidget {
             size: 26,
           ),
           items: items
-              .map((e) => DropdownMenuItem<String>(value: e, child: Text(e)))
+              .map(
+                (e) => DropdownMenuItem<String>(
+                  value: e,
+                  child: Text(
+                    e,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Textstyles.font14GreyNormal.copyWith(fontSize: 14),
+                  ),
+                ),
+              )
               .toList(),
           onChanged: onChanged,
         ),

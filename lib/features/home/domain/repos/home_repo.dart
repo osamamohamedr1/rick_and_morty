@@ -4,6 +4,11 @@ import 'package:rick_and_morty/features/home/data/models/character_model/charact
 
 abstract class HomeRepo {
   Future<Either<Failure, List<CharacterModel>>> featchCharacters({
-    int pageNumber = 1,
+    int pageNumber,
+    String? name,
+    String? status,
+    String? species,
+    String? type,
+    String? gender,
   });
 }

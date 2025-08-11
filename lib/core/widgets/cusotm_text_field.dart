@@ -6,11 +6,13 @@ class CustomSearchField extends StatelessWidget {
     this.hintText = 'Search characters...',
     this.controller,
     this.onChanged,
+    this.focusNode,
   });
 
   final String? hintText;
   final TextEditingController? controller;
   final void Function(String)? onChanged;
+  final FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -19,19 +21,12 @@ class CustomSearchField extends StatelessWidget {
       child: TextField(
         onChanged: onChanged,
         controller: controller,
+        focusNode: focusNode,
         textInputAction: TextInputAction.search,
         cursorColor: Colors.blue,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.search, color: Colors.grey),
-          suffixIcon: controller?.text.isNotEmpty == true
-              ? IconButton(
-                  icon: const Icon(Icons.clear, color: Colors.grey),
-                  onPressed: () {
-                    controller?.clear();
-                    onChanged?.call('');
-                  },
-                )
-              : null,
+
           hintText: hintText,
           hintStyle: Theme.of(
             context,

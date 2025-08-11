@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/features/home/presentation/views/widgets/drop_down_button.dart';
+import 'package:rick_and_morty/features/home/presentation/manager/cubit/home_cubit.dart';
 
 class FilterRow extends StatefulWidget {
-  const FilterRow({
-    super.key,
-    required this.onStatusChanged,
-    required this.onSpeciesChanged,
-  });
-  final void Function(String?) onStatusChanged;
-  final void Function(String?) onSpeciesChanged;
+  final String searchName;
+  const FilterRow({super.key, required this.searchName});
 
   @override
   State<FilterRow> createState() => _FilterRowState();
@@ -17,6 +14,16 @@ class FilterRow extends StatefulWidget {
 class _FilterRowState extends State<FilterRow> {
   String? selectedStatus;
   String? selectedSpecies;
+
+  void _applyFilters() {
+    context.read<HomeCubit>().getCharactersList(
+      pageNumber: 1,
+      name: widget.searchName.isEmpty ? null : widget.searchName,
+      status: selectedStatus?.toLowerCase(),
+      species: selectedSpecies?.toLowerCase(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -26,7 +33,13 @@ class _FilterRowState extends State<FilterRow> {
           child: CustomDropDownButton(
             hint: 'Select Status',
             items: statusOptions,
-            onChanged: widget.onStatusChanged,
+            value: selectedStatus,
+            onChanged: (value) {
+              setState(() {
+                selectedStatus = value == 'Clear Filter' ? null : value;
+              });
+              _applyFilters();
+            },
           ),
         ),
         const SizedBox(width: 8),
@@ -37,9 +50,9 @@ class _FilterRowState extends State<FilterRow> {
             value: selectedSpecies,
             onChanged: (value) {
               setState(() {
-                selectedSpecies = value;
+                selectedSpecies = value == 'Clear Filter' ? null : value;
               });
-              widget.onSpeciesChanged(value);
+              _applyFilters();
             },
           ),
         ),
@@ -48,5 +61,16 @@ class _FilterRowState extends State<FilterRow> {
   }
 }
 
-final statusOptions = const ['Alive', 'Dead', 'Unknown'];
-final speciesOptions = const ['Human', 'Alien', 'Other'];
+final statusOptions = const ['Clear Filter', 'Alive', 'Dead', 'Unknown'];
+final speciesOptions = const [
+  'Clear Filter',
+  'Human',
+  'Alien',
+  'Humanoid',
+  'Animal',
+  'Robot',
+  'Cronenberg',
+  'Disease',
+  'Mythological Creature',
+  'Poopybutthole',
+];
