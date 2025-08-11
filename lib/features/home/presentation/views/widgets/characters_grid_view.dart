@@ -5,6 +5,7 @@ import 'package:rick_and_morty/core/routes/routes.dart';
 import 'package:rick_and_morty/features/home/data/models/character_model/character_model.dart';
 import 'package:rick_and_morty/features/home/presentation/manager/cubit/home_cubit.dart';
 import 'package:rick_and_morty/features/home/presentation/views/widgets/character_item.dart';
+import 'package:rick_and_morty/features/home/presentation/views/widgets/characters_shimmer.dart';
 
 class CharactersGridView extends StatefulWidget {
   final ScrollController scrollController;
@@ -64,9 +65,7 @@ class _CharactersGridViewState extends State<CharactersGridView> {
       },
       builder: (context, state) {
         if (characters.isEmpty && state is GetCharactersLoading) {
-          return const SliverToBoxAdapter(
-            child: Center(child: CircularProgressIndicator()),
-          );
+          return CharactersShimmer();
         }
 
         if (characters.isEmpty && state is GetCharactersFailure) {
@@ -85,16 +84,18 @@ class _CharactersGridViewState extends State<CharactersGridView> {
           delegate: SliverChildBuilderDelegate((context, index) {
             return FittedBox(
               fit: BoxFit.fill,
-              child: CharacterCard(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    Routes.characterDetails,
-                    arguments: characters[index],
-                  );
-                },
-                characterModel: characters[index],
-              ),
+              child: state is GetCharactersPaginationLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : CharacterCard(
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          Routes.characterDetails,
+                          arguments: characters[index],
+                        );
+                      },
+                      characterModel: characters[index],
+                    ),
             );
           }, childCount: characters.length),
         );
