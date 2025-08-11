@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/core/networking/api_service.dart';
 import 'package:rick_and_morty/core/routes/routes.dart';
-import 'package:rick_and_morty/features/favorites/data/repos/favorite_repo_impl.dart';
-import 'package:rick_and_morty/features/favorites/presentation/manager/cubit/favorites_cubit.dart';
 import 'package:rick_and_morty/features/favorites/presentation/views/favorite_view.dart';
 import 'package:rick_and_morty/features/home/data/data_sources/home_local_data_source.dart';
 import 'package:rick_and_morty/features/home/data/data_sources/home_remote_data_source.dart';

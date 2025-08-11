@@ -15,7 +15,10 @@ class CustomCachedNetworkImage extends StatelessWidget {
       fit: BoxFit.fill,
       imageUrl: characterModel.image ?? errorImageUrl,
       placeholder: (context, url) => Center(
-        child: Image.asset(height: 270, width: 200, Assets.imagesLoader),
+        child: FittedBox(
+          fit: BoxFit.fill,
+          child: Image.asset(height: 310, width: 290, Assets.imagesLoader),
+        ),
       ),
       errorWidget: (context, url, error) =>
           Icon(Icons.error, color: Colors.red, size: 40),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rick_and_morty/core/routes/routes.dart';
 import 'package:rick_and_morty/core/utils/assets.dart';
 import 'package:rick_and_morty/core/utils/colors_manager.dart';
+import 'package:rick_and_morty/core/utils/extensions.dart';
 import 'package:rick_and_morty/features/favorites/presentation/views/widgets/favorite_item_widget.dart';
 import 'package:rick_and_morty/features/favorites/presentation/manager/cubit/favorites_cubit.dart';
 import 'package:rick_and_morty/features/favorites/presentation/views/widgets/no_favorite_widget.dart';
@@ -39,14 +41,24 @@ class FavoriteView extends StatelessWidget {
               itemCount: favorites.length,
               itemBuilder: (context, index) {
                 final character = favorites[index];
-                return FavoriteCharacterCard(
-                  characterModel: character,
-                  isFavorite: context.read<FavoritesCubit>().checkFavorite(
-                    character.id,
-                  ),
+                return GestureDetector(
                   onTap: () {
-                    context.read<FavoritesCubit>().removeFavorite(character.id);
+                    context.pushNamed(
+                      Routes.characterDetails,
+                      arguments: character,
+                    );
                   },
+                  child: FavoriteCharacterCard(
+                    characterModel: character,
+                    isFavorite: context.read<FavoritesCubit>().checkFavorite(
+                      character.id,
+                    ),
+                    onTap: () {
+                      context.read<FavoritesCubit>().removeFavorite(
+                        character.id,
+                      );
+                    },
+                  ),
                 );
               },
             );

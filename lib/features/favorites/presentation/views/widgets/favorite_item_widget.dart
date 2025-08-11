@@ -30,20 +30,23 @@ class FavoriteCharacterCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: CachedNetworkImage(
-              imageUrl: characterModel.image ?? errorImageUrl,
-              fit: BoxFit.cover,
-              height: 100,
-              width: 100,
-              placeholder: (context, url) => SizedBox(
-                height: 90,
-                width: 90,
-                child: CircularProgressIndicator(),
+          Hero(
+            tag: 'character-${characterModel.id}',
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: CachedNetworkImage(
+                imageUrl: characterModel.image ?? errorImageUrl,
+                fit: BoxFit.cover,
+                height: 100,
+                width: 100,
+                placeholder: (context, url) => SizedBox(
+                  height: 90,
+                  width: 90,
+                  child: CircularProgressIndicator(),
+                ),
+                errorWidget: (context, url, error) =>
+                    Icon(Icons.error, color: Colors.red),
               ),
-              errorWidget: (context, url, error) =>
-                  Icon(Icons.error, color: Colors.red),
             ),
           ),
           horizontalSpace(16),

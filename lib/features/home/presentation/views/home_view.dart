@@ -64,9 +64,12 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
                 SliverToBoxAdapter(child: verticalSpace(20)),
-
-                // Characters grid handles all Bloc + pagination logic
-                CharactersGridView(scrollController: _scrollController),
+                SliverPadding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  sliver: CharactersGridView(
+                    scrollController: _scrollController,
+                  ),
+                ),
               ],
             ),
           ),

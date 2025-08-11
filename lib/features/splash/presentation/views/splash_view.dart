@@ -25,12 +25,13 @@ class _SplashViewState extends State<SplashView> {
 
     if (mounted) {
       Future.delayed(Duration(seconds: 2), () {
-        context.pushNamedAndRemoveUntil(
-          Routes.home,
-          predicate: (route) => false,
-        );
+        navigateToNextPage();
       });
     }
+  }
+
+  void navigateToNextPage() {
+    context.pushNamedAndRemoveUntil(Routes.home, predicate: (route) => false);
   }
 
   @override

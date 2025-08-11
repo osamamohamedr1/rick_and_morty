@@ -20,7 +20,7 @@ class CharacterCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: ColorsManager.green,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: ColorsManager.green, width: 1),
+          border: Border.all(color: ColorsManager.green, width: 2),
         ),
         child: Stack(
           children: [
@@ -64,8 +64,8 @@ class CharacterCard extends StatelessWidget {
               ],
             ),
             Positioned(
-              bottom: 20,
-              right: 16,
+              bottom: 12,
+              right: 12,
               child: BlocBuilder<FavoritesCubit, FavoritesState>(
                 builder: (context, state) {
                   bool isFavorite = false;
@@ -78,20 +78,18 @@ class CharacterCard extends StatelessWidget {
                         ? state.isFavorite
                         : false;
                   }
-                  return SizedBox(
-                    child: CustomFavoriteIcon(
-                      radius: 60,
-                      characterId: characterModel.id ?? 0,
-                      isFavorite: isFavorite,
-                      onPressed: () {
-                        final cubit = context.read<FavoritesCubit>();
-                        if (isFavorite) {
-                          cubit.removeFavorite(characterModel.id ?? 0);
-                        } else {
-                          cubit.addFavorite(characterModel);
-                        }
-                      },
-                    ),
+                  return CustomFavoriteIcon(
+                    radius: 65,
+                    characterId: characterModel.id ?? 0,
+                    isFavorite: isFavorite,
+                    onPressed: () {
+                      final cubit = context.read<FavoritesCubit>();
+                      if (isFavorite) {
+                        cubit.removeFavorite(characterModel.id ?? 0);
+                      } else {
+                        cubit.addFavorite(characterModel);
+                      }
+                    },
                   );
                 },
               ),
