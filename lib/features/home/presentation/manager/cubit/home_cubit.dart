@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:rick_and_morty/core/services/connectivity_service.dart';
 import 'package:rick_and_morty/features/home/data/models/character_model/character_model.dart';
 import 'package:rick_and_morty/features/home/domain/use_case/home_use_case.dart';
 part 'home_state.dart';
@@ -60,7 +61,11 @@ class HomeCubit extends Cubit<HomeState> {
           emit(GetCharactersPaginationFailure(failure.errorMessage));
         }
       },
-      (newCharacters) {
+      (newCharacters) async {
+        // Check if we're offline to show cache indicator
+        final hasInternet = await ConnectivityService.hasInternetConnection();
+        final isFromCache = !hasInternet;
+
         if (isNewSearch) {
           _characters = newCharacters;
         } else {
@@ -70,7 +75,7 @@ class HomeCubit extends Cubit<HomeState> {
               .toList();
           _characters.addAll(filtered);
         }
-        emit(GetCharactersSuccess(_characters));
+        emit(GetCharactersSuccess(_characters, isFromCache: isFromCache));
       },
     );
   }

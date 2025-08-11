@@ -9,8 +9,9 @@ final class GetCharactersLoading extends HomeState {}
 
 final class GetCharactersSuccess extends HomeState {
   final List<CharacterModel> characters;
+  final bool isFromCache;
 
-  GetCharactersSuccess(this.characters);
+  GetCharactersSuccess(this.characters, {this.isFromCache = false});
 }
 
 final class GetCharactersPaginationLoading extends HomeState {}

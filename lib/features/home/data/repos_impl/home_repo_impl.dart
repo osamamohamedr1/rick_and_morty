@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:rick_and_morty/core/functions/save_charchters_local.dart';
+import 'package:rick_and_morty/core/services/connectivity_service.dart';
 import 'package:rick_and_morty/core/utils/const.dart';
 import 'package:rick_and_morty/core/utils/errors.dart';
 import 'package:rick_and_morty/features/home/data/data_sources/home_local_data_source.dart';
@@ -26,9 +26,28 @@ class HomeRepoImpl implements HomeRepo {
     String? type,
     String? gender,
   }) async {
-    List<CharacterModel> books;
+    final hasInternet = await ConnectivityService.hasInternetConnection();
+    // offline case
+    if (!hasInternet) {
+      final cachedCharacters = homeLocalDataSource.fetchCharacters(
+        pageNumber: pageNumber,
+      );
+      if (cachedCharacters.isNotEmpty) {
+        return right(cachedCharacters);
+      } else {
+        return left(
+          ServerFailure(
+            errorMessage:
+                'No internet connection and no cached data available.',
+          ),
+        );
+      }
+    }
+
+    // online case
+    List<CharacterModel> characters;
     try {
-      books = await homeRemoteDataSource.fetchListOfCharacters(
+      characters = await homeRemoteDataSource.fetchListOfCharacters(
         pageNumber: pageNumber,
         name: name,
         status: status,
@@ -36,12 +55,21 @@ class HomeRepoImpl implements HomeRepo {
         type: type,
         gender: gender,
       );
+
       if (pageNumber == 1) {
         await Hive.box<CharacterModel>(kCharacterBox).clear();
-        saveCharactersLocal(books, kCharacterBox);
+        homeLocalDataSource.saveCharactersLocal(characters, kCharacterBox);
       }
-      return right(books);
+
+      return right(characters);
     } catch (e) {
+      final cachedCharacters = homeLocalDataSource.fetchCharacters(
+        pageNumber: pageNumber,
+      );
+      if (cachedCharacters.isNotEmpty) {
+        return right(cachedCharacters);
+      }
+
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {

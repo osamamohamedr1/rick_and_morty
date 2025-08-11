@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-const String kCharacterBox = 'character_box';
-const String kFavoriteBox = 'kFavoriteBox';
+const String kCharacterBox = 'character_box1';
+const String kFavoriteBox = 'kFavoriteBox1';
 
 const String errorImageUrl =
     'https://rickandmortyapi.com/api/character/avatar/21.jpeg';

@@ -22,7 +22,6 @@ void main() async {
   Hive.registerAdapter(OriginAdapter());
   await Hive.openBox<CharacterModel>(kCharacterBox);
   await Hive.openBox<CharacterModel>(kFavoriteBox);
-
   setupServiceLocator();
   Bloc.observer = MyBlocObserver();
   runApp(RickAndMorty(appRouter: AppRouter()));
@@ -40,7 +39,6 @@ class RickAndMorty extends StatelessWidget {
       child: BlocProvider(
         create: (context) =>
             FavoritesCubit(FavoriteRepositoryImpl())..loadFavorites(),
-
         child: MaterialApp(
           initialRoute: Routes.splash,
           onGenerateRoute: appRouter.generateRoute,

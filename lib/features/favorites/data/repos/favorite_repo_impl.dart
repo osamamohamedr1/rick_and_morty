@@ -4,11 +4,7 @@ import 'package:rick_and_morty/features/favorites/domain/repositories/favorite_r
 import 'package:rick_and_morty/features/home/data/models/character_model/character_model.dart';
 
 class FavoriteRepositoryImpl implements FavoriteRepository {
-  final Box<CharacterModel> _favoriteBox = Hive.box<CharacterModel>(
-    kFavoriteBox,
-  );
-
-  FavoriteRepositoryImpl();
+  final _favoriteBox = Hive.box<CharacterModel>(kFavoriteBox);
 
   @override
   Future<void> addToFavorites(CharacterModel character) async {
