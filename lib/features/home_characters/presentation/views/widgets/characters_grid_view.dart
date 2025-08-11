@@ -5,10 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/core/routes/routes.dart';
 import 'package:rick_and_morty/core/utils/spacing.dart';
 import 'package:rick_and_morty/core/utils/text_styles.dart';
-import 'package:rick_and_morty/features/home/data/models/character_model/character_model.dart';
-import 'package:rick_and_morty/features/home/presentation/manager/cubit/home_cubit.dart';
-import 'package:rick_and_morty/features/home/presentation/views/widgets/character_item.dart';
-import 'package:rick_and_morty/features/home/presentation/views/widgets/characters_shimmer.dart';
+import 'package:rick_and_morty/features/home_characters/data/models/character_model/character_model.dart';
+import 'package:rick_and_morty/features/home_characters/presentation/manager/cubit/home_cubit.dart';
+import 'package:rick_and_morty/features/home_characters/presentation/views/widgets/character_item.dart';
+import 'package:rick_and_morty/features/home_characters/presentation/views/widgets/characters_shimmer.dart';
 
 class CharactersGridView extends StatefulWidget {
   final ScrollController scrollController;

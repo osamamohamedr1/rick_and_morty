@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:rick_and_morty/core/utils/errors.dart';
-import 'package:rick_and_morty/features/home/data/models/character_model/character_model.dart';
-import 'package:rick_and_morty/features/home/domain/repos/home_repo.dart';
+import 'package:rick_and_morty/features/home_characters/data/models/character_model/character_model.dart';
+import 'package:rick_and_morty/features/home_characters/domain/repos/home_repo.dart';
 
 class HomeGetCharactersUseCase {
   final HomeRepo homeRepo;

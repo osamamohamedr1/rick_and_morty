@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:rick_and_morty/core/networking/api_service.dart';
-import 'package:rick_and_morty/features/home/data/data_sources/home_local_data_source.dart';
-import 'package:rick_and_morty/features/home/data/data_sources/home_remote_data_source.dart';
-import 'package:rick_and_morty/features/home/data/repos_impl/home_repo_impl.dart';
-import 'package:rick_and_morty/features/home/domain/use_case/home_use_case.dart';
+import 'package:rick_and_morty/features/home_characters/data/data_sources/home_local_data_source.dart';
+import 'package:rick_and_morty/features/home_characters/data/data_sources/home_remote_data_source.dart';
+import 'package:rick_and_morty/features/home_characters/data/repos_impl/home_repo_impl.dart';
+import 'package:rick_and_morty/features/home_characters/domain/use_case/home_use_case.dart';
 
 final getIt = GetIt.instance;
 

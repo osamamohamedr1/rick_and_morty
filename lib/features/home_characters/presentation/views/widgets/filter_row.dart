@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_and_morty/features/home/presentation/views/widgets/drop_down_button.dart';
-import 'package:rick_and_morty/features/home/presentation/manager/cubit/home_cubit.dart';
+import 'package:rick_and_morty/features/home_characters/presentation/views/widgets/drop_down_button.dart';
+import 'package:rick_and_morty/features/home_characters/presentation/manager/cubit/home_cubit.dart';
 
 class FilterRow extends StatefulWidget {
   final String searchName;

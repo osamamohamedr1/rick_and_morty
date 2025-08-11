@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:rick_and_morty/features/favorites/domain/repositories/favorite_repository.dart';
-import 'package:rick_and_morty/features/home/data/models/character_model/character_model.dart';
+import 'package:rick_and_morty/features/home_characters/data/models/character_model/character_model.dart';
 
 part 'favorites_state.dart';
 

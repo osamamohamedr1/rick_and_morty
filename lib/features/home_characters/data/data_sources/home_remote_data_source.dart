@@ -1,5 +1,6 @@
 import 'package:rick_and_morty/core/networking/api_service.dart';
-import 'package:rick_and_morty/features/home/data/models/character_model/character_model.dart';
+import 'package:rick_and_morty/core/utils/const.dart';
+import 'package:rick_and_morty/features/home_characters/data/models/character_model/character_model.dart';
 
 class HomeRemoteDataSource {
   final ApiService apiService;
@@ -23,7 +24,7 @@ class HomeRemoteDataSource {
       if (gender != null && gender.isNotEmpty) 'gender': gender,
     };
     var result = await apiService.get(
-      endPoint: 'character/',
+      endPoint: kEndpoint,
       queryParams: queryParams,
     );
     List<CharacterModel> books = getCharactersList(result);

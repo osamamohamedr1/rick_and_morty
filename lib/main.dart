@@ -9,9 +9,9 @@ import 'package:rick_and_morty/core/routes/app_router.dart';
 import 'package:rick_and_morty/core/routes/routes.dart';
 import 'package:rick_and_morty/features/favorites/data/repos/favorite_repo_impl.dart';
 import 'package:rick_and_morty/features/favorites/presentation/manager/cubit/favorites_cubit.dart';
-import 'package:rick_and_morty/features/home/data/models/character_model/character_model.dart';
-import 'package:rick_and_morty/features/home/data/models/character_model/location.dart';
-import 'package:rick_and_morty/features/home/data/models/character_model/origin.dart';
+import 'package:rick_and_morty/features/home_characters/data/models/character_model/character_model.dart';
+import 'package:rick_and_morty/features/home_characters/data/models/character_model/location.dart';
+import 'package:rick_and_morty/features/home_characters/data/models/character_model/origin.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -4,10 +4,10 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:rick_and_morty/core/services/connectivity_service.dart';
 import 'package:rick_and_morty/core/utils/const.dart';
 import 'package:rick_and_morty/core/utils/errors.dart';
-import 'package:rick_and_morty/features/home/data/data_sources/home_local_data_source.dart';
-import 'package:rick_and_morty/features/home/data/data_sources/home_remote_data_source.dart';
-import 'package:rick_and_morty/features/home/data/models/character_model/character_model.dart';
-import 'package:rick_and_morty/features/home/domain/repos/home_repo.dart';
+import 'package:rick_and_morty/features/home_characters/data/data_sources/home_local_data_source.dart';
+import 'package:rick_and_morty/features/home_characters/data/data_sources/home_remote_data_source.dart';
+import 'package:rick_and_morty/features/home_characters/data/models/character_model/character_model.dart';
+import 'package:rick_and_morty/features/home_characters/domain/repos/home_repo.dart';
 
 class HomeRepoImpl implements HomeRepo {
   final HomeRemoteDataSource homeRemoteDataSource;

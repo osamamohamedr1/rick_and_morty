@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:rick_and_morty/core/utils/errors.dart';
-import 'package:rick_and_morty/features/home/data/models/character_model/character_model.dart';
+import 'package:rick_and_morty/features/home_characters/data/models/character_model/character_model.dart';
 
 abstract class HomeRepo {
   Future<Either<Failure, List<CharacterModel>>> featchCharacters({

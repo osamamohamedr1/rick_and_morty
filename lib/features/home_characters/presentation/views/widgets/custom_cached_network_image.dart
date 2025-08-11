@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/core/utils/assets.dart';
 import 'package:rick_and_morty/core/utils/const.dart';
-import 'package:rick_and_morty/features/home/data/models/character_model/character_model.dart';
+import 'package:rick_and_morty/features/home_characters/data/models/character_model/character_model.dart';
 
 class CustomCachedNetworkImage extends StatelessWidget {
   const CustomCachedNetworkImage({super.key, required this.characterModel});

@@ -4,7 +4,7 @@ import 'package:rick_and_morty/core/utils/colors_manager.dart';
 import 'package:rick_and_morty/core/utils/const.dart';
 import 'package:rick_and_morty/core/utils/spacing.dart';
 import 'package:rick_and_morty/core/utils/text_styles.dart';
-import 'package:rick_and_morty/features/home/data/models/character_model/character_model.dart';
+import 'package:rick_and_morty/features/home_characters/data/models/character_model/character_model.dart';
 import 'package:rick_and_morty/core/widgets/custom_faorite_icon.dart';
 
 class FavoriteCharacterCard extends StatelessWidget {

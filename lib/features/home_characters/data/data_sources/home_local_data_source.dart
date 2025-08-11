@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:rick_and_morty/core/utils/const.dart';
-import 'package:rick_and_morty/features/home/data/models/character_model/character_model.dart';
+import 'package:rick_and_morty/features/home_characters/data/models/character_model/character_model.dart';
 
 class HomeLocalDataSource {
   List<CharacterModel> fetchCharacters({int pageNumber = 1}) {

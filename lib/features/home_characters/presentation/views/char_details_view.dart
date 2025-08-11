@@ -4,10 +4,10 @@ import 'package:rick_and_morty/core/utils/assets.dart';
 import 'package:rick_and_morty/core/utils/colors_manager.dart';
 import 'package:rick_and_morty/core/utils/spacing.dart';
 import 'package:rick_and_morty/core/utils/text_styles.dart';
-import 'package:rick_and_morty/features/home/data/models/character_model/character_model.dart';
-import 'package:rick_and_morty/features/home/presentation/views/widgets/character_details_row.dart';
-import 'package:rick_and_morty/features/home/presentation/views/widgets/custom_cached_network_image.dart';
-import 'package:rick_and_morty/features/home/presentation/views/widgets/episodes_list.dart';
+import 'package:rick_and_morty/features/home_characters/data/models/character_model/character_model.dart';
+import 'package:rick_and_morty/features/home_characters/presentation/views/widgets/character_details_row.dart';
+import 'package:rick_and_morty/features/home_characters/presentation/views/widgets/custom_cached_network_image.dart';
+import 'package:rick_and_morty/features/home_characters/presentation/views/widgets/episodes_list.dart';
 
 class CharacterDetailsView extends StatelessWidget {
   const CharacterDetailsView({super.key, required this.characterModel});

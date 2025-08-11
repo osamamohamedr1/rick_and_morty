@@ -6,11 +6,11 @@ import 'package:rick_and_morty/core/utils/assets.dart';
 import 'package:rick_and_morty/core/utils/colors_manager.dart';
 import 'package:rick_and_morty/core/utils/spacing.dart';
 import 'package:rick_and_morty/core/widgets/cusotm_text_field.dart';
-import 'package:rick_and_morty/features/home/presentation/manager/cubit/home_cubit.dart';
-import 'package:rick_and_morty/features/home/presentation/views/widgets/cache_indicator_banner.dart';
-import 'package:rick_and_morty/features/home/presentation/views/widgets/characters_grid_view.dart';
-import 'package:rick_and_morty/features/home/presentation/views/widgets/explore_favorite_button.dart';
-import 'package:rick_and_morty/features/home/presentation/views/widgets/filter_row.dart';
+import 'package:rick_and_morty/features/home_characters/presentation/manager/cubit/home_cubit.dart';
+import 'package:rick_and_morty/features/home_characters/presentation/views/widgets/cache_indicator_banner.dart';
+import 'package:rick_and_morty/features/home_characters/presentation/views/widgets/characters_grid_view.dart';
+import 'package:rick_and_morty/features/home_characters/presentation/views/widgets/explore_favorite_button.dart';
+import 'package:rick_and_morty/features/home_characters/presentation/views/widgets/filter_row.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -110,7 +110,6 @@ class _HomeViewState extends State<HomeView> {
                 const SliverToBoxAdapter(child: ExploreFavoriteButton()),
                 sliverVerticalSpace(10),
 
-                // Show cache indicator banner when data is from cache
                 if (state is GetCharactersSuccess && state.isFromCache)
                   const SliverToBoxAdapter(child: CacheIndicatorBanner()),
 
