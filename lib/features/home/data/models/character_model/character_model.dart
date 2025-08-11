@@ -72,7 +72,9 @@ class CharacterModel extends HiveObject {
           ? null
           : Location.fromJson(json['location'] as Map<String, dynamic>),
       image: json['image'] as String?,
-      episode: json['episode'] as List<dynamic>?,
+      episode: (json['episode'] as List<dynamic>?)
+          ?.map((e) => e.toString())
+          .toList(),
       url: json['url'] as String?,
       created: json['created'] == null
           ? null

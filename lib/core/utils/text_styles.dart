@@ -19,4 +19,22 @@ class Textstyles {
     fontWeight: FontWeight.normal,
     color: ColorsManager.grey,
   );
+
+  static TextStyle font16WhiteBold = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
+
+  static TextStyle font14GreyBold = TextStyle(
+    fontSize: 14.sp,
+    color: Colors.grey,
+    fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle font14WhiteNormal = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.normal,
+    color: Colors.white,
+  );
 }
