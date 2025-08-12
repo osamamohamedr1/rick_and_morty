@@ -9,9 +9,7 @@ A **Flutter** application that lets users explore Rick & Morty characters with f
 - Offline mode
 - Error handling
 
-
-
-## 🛠 Tech Stack & Architecture
+
 
 ### **Architecture**
 
@@ -23,7 +21,7 @@ A **Flutter** application that lets users explore Rick & Morty characters with f
   - Domain
   - Presentation
 
-
+**Screen shots**
 
 ![3](https://github.com/user-attachments/assets/370fcef9-193f-4509-ab57-c71e945c8fd6)
 ![2](https://github.com/user-attachments/assets/3b1caf0f-2119-4ffb-98f0-57cacfd1f6c1)
