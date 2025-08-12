@@ -23,30 +23,7 @@ A **Flutter** application that lets users explore Rick & Morty characters with f
   - Domain
   - Presentation
 
-### **Networking**
-- [dio](https://pub.dev/packages/dio) for REST API calls
 
-### **State Management**
-- [flutter_bloc](https://pub.dev/packages/flutter_bloc) for predictable state handling
-
-### **Persistence**
-- [shared_preferences](https://pub.dev/packages/shared_preferences) for storing favorites
-
-### **Offline Support**
-- [connectivity_plus](https://pub.dev/packages/connectivity_plus)
-- [flutter_offline](https://pub.dev/packages/flutter_offline)
-
-### **UI & Utilities**
-- [flutter_screenutil](https://pub.dev/packages/flutter_screenutil) for responsive layouts
-- [infinite_scroll_pagination](https://pub.dev/packages/infinite_scroll_pagination) for pagination
-
-### **Miscellaneous**
-- [flutter_svg](https://pub.dev/packages/flutter_svg)
-- [fluttertoast](https://pub.dev/packages/fluttertoast)
-- [get_it](https://pub.dev/packages/get_it) for dependency injection
-- [flutter_native_splash](https://pub.dev/packages/flutter_native_splash) for splash screen configuration
-
----
 
 ![3](https://github.com/user-attachments/assets/370fcef9-193f-4509-ab57-c71e945c8fd6)
 ![2](https://github.com/user-attachments/assets/3b1caf0f-2119-4ffb-98f0-57cacfd1f6c1)
